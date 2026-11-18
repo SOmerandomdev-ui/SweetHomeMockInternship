@@ -2010,6 +2010,8 @@ public class PlanComponent extends JComponent implements PlanView, Scrollable, P
 
   //Check where this is called and change the index and iterate over it
   public int print(Graphics g, PageFormat pageFormat, int pageIndex) {
+    //get the current level
+    Level originalSelectedLevel = this.home.getSelectedLevel();
     List<Selectable> printedItems = getPaintedItems(); 
     Rectangle2D printedItemBounds = getItemsBounds(g, printedItems);
     if (printedItemBounds != null) {
@@ -2025,8 +2027,6 @@ public class PlanComponent extends JComponent implements PlanView, Scrollable, P
       if (this.home.getPrint() == null || this.home.getPrint().getPlanScale() == null) {
         // Compute a scale that ensures the plan will fill the component if plan scale is null
         printScale = getPrintPreferredScale(g, pageFormat) * LengthUnit.centimeterToInch(72);
-        //get the current level
-        Level originalSelectedLevel = this.home.getSelectedLevel();
         //make a list and add all the home levels to it
         List<Level> levels = new ArrayList<Level>();
         for (Level level : this.home.getLevels()) {
@@ -2083,6 +2083,7 @@ public class PlanComponent extends JComponent implements PlanView, Scrollable, P
         // Ignore exception because it may happen only in EXPORT paint mode 
       }   
       g2D.dispose();
+      this.home.setSelectedLevel(originalSelectedLevel);
       return PAGE_EXISTS;
     } else {
       return NO_SUCH_PAGE;
