@@ -2030,8 +2030,10 @@ public class PlanComponent extends JComponent implements PlanView, Scrollable, P
         //make a list and add all the home levels to it
         List<Level> levels = new ArrayList<Level>();
         for (Level level : this.home.getLevels()) {
-          levels.add(level);
-        }
+          if (level.isViewable()) {
+            levels.add(level);
+          };
+        };
         if (levels.isEmpty()) {
           if (pageIndex > 0) {
             return NO_SUCH_PAGE;
