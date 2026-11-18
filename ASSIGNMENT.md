@@ -33,7 +33,7 @@ below.
 
 ## Generative AI usage
 
-You may use generative AI tools as part of your development workflow.
+Generative AI tools as part of your development workflow.
 They can be useful for understanding unfamiliar code, interpreting errors,
 or identifying places in the codebase to investigate.
 Treat their suggestions as suggestions, not as authoritative answers.
